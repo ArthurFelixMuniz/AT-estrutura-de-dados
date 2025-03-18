@@ -1,0 +1,146 @@
+## Atividade Recursividade
+
+1
+
+```jsx
+// Online C compiler to run C program online
+#include <stdio.h>
+```
+
+```jsx
+int FatoracaoN(int n){
+if(n == 0){
+return 1;
+}
+else{
+return n *FatoracaoN(n-1);
+}
+}
+int main() {
+int numero = FatoracaoN(4);
+printf("%d", numero);
+```
+
+```
+return 0;
+
+```
+
+```jsx
+}
+
+2)
+
+#include <stdio.h>
+
+int SomaNum (int numero){
+    if(numero == 0){
+        return 0;
+    }
+    return numero + SomaNum(numero-1);
+}
+
+int main() {
+   int num =3;
+   printf("Soma dos numeros de %d é %d\n", num, SomaNum(num));
+   return 0;
+   
+}
+3)
+#include <stdio.h>
+
+int fibonacci(int n) {  
+    if (n == 0) return 0;  
+    if (n == 1) return 1;  
+    
+    return fibonacci(n - 1) + fibonacci(n - 2);  
+}
+
+int main() {  
+    int n = 6;  
+    printf("Fibonacci de %d é %d\n", n, fibonacci(n)); 
+    return 0;  
+}
+
+4)
+#include <stdio.h>
+
+int potencia(int x, int n) {
+    if (n == 0) return 1;
+    return x * potencia(x, n - 1);
+}
+
+int main() {
+    int x = 2, n = 5;
+    printf("%d elevado a %d é %d\n", x, n, potencia(x, n));
+    return 0;
+}
+
+5)#include <stdio.h>
+
+int Contagem(int n){
+ if(n < 0){
+    return 0;
+ }
+    printf("%d", n);
+    Contagem(n-1);
+ }
+   
+
+int main() {
+  int n = 10;
+  printf("Contagem: \n");
+  Contagem(n);
+  printf("\n");
+  
+   return 0;
+
+6)
+#include <stdio.h>
+
+int SomaNumeros(int n){
+    if(n == 0){
+        return 0;
+    }
+    return (n % 10) + SomaNumeros(n / 10);
+}
+
+int main() {
+  int n = 12345;
+  printf("A soma dos numero %d é %d \n", n ,SomaNumeros(n));
+
+  
+   return 0;
+   
+}
+
+9)
+#include <stdio.h>
+
+int mdc(int a, int b) {
+    if (b == 0) 
+    return a;
+    return mdc(b, a % b);
+}
+
+int main() {
+    int a = 48, b = 18;
+    printf("MDC de %d e %d é %d\n", a, b, mdc(a, b));
+    return 0;
+}
+10)
+#include <stdio.h>
+
+int multiplica(int n1, int n2) {
+    if (n2 == 0) 
+    return 0;
+    return n1 + multiplica(n1, n2 - 1);
+}
+
+int main() {
+    int a = 4, b = 5;
+    printf("Multiplicação de %d e %d é %d\n", a, b, multiplica(a, b));
+    return 0;
+}
+
+```
