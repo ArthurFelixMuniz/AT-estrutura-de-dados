@@ -142,5 +142,237 @@ int main() {
     printf("Multiplicação de %d e %d é %d\n", a, b, multiplica(a, b));
     return 0;
 }
+#include <stdio.h>
+#include <string.h>
+
+
+11.
+int contar_caracteres(char str[], char c, int i) {
+    if (str[i] == '\0')
+        return 0;
+    if (str[i] == c)
+        return 1 + contar_caracteres(str, c, i + 1);
+    return contar_caracteres(str, c, i + 1);
+}
+
+int main() {
+    char str[] = "abracadabra";
+    char c = 'a';
+    printf("Caractere '%c' aparece %d vezes.\n", c, contar_caracteres(str, c, 0));
+    return 0;
+}
+*/
+/*
+12.
+int soma_array(int arr[], int n) {
+    if (n == 0)
+        return 0;
+    return arr[n - 1] + soma_array(arr, n - 1);
+}
+
+int main() {
+    int arr[] = {1, 2, 3, 4};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Soma dos elementos do array: %d\n", soma_array(arr, n));
+    return 0;
+}*/
+
+/*
+13.
+int primo(int n, int i) {
+    if (n <= 1)
+        return 0;
+    if (i == 1)
+        return 1;
+    if (n % i == 0)
+        return 0;
+    return primo(n, i - 1);
+}
+
+int main() {
+    int n = 7;
+    if (primo(n, n / 2))
+        printf("%d é primo.\n", n);
+    else
+        printf("%d não é primo.\n", n);
+    return 0;
+}*/
+/*
+
+14.
+void decimal_para_binario(int n) {
+    if (n == 0)
+        return;
+    decimal_para_binario(n / 2);
+    printf("%d", n % 2);
+}
+
+int main() {
+    int n = 10;
+    printf("Binário de %d: ", n);
+    if (n == 0)
+        printf("0");
+    else
+        decimal_para_binario(n);
+    printf("\n");
+    return 0;
+}
+*/
+/*
+15.
+void imprimir_pares(int n) {
+    if (n < 0) return;
+    if (n % 2 == 0)
+        printf("%d ", n);
+    imprimir_pares(n - 1);
+}
+
+int main() {
+    int n = 6;
+    printf("Números pares de 0 a %d: ", n);
+    imprimir_pares(n);
+    printf("\n");
+    return 0;
+}
+*/
+
+16. 
+void imprimirNumerosImpares(int limite, int atual) {
+    if (atual > limite) return;
+    printf("%d ", atual);
+    imprimirNumerosImpares(limite, atual + 2);
+}
+
+ 17. 
+int buscaElementoArray(int vetor[], int tamanho, int alvo, int indice) {
+    if (indice >= tamanho) return 0;
+    if (vetor[indice] == alvo) return 1;
+    return buscaElementoArray(vetor, tamanho, alvo, indice + 1);
+}
+
+ 18. 
+int calcularTamanhoString(char *texto) {
+    if (*texto == '\0') return 0;
+    return 1 + calcularTamanhoString(texto + 1);
+}
+
+ 19. 
+void resolverTorreHanoi(int discos, char origem, char destino, char auxiliar) {
+    if (discos == 1) {
+        printf("Mover disco 1 de %c para %c\n", origem, destino);
+        return;
+    }
+    resolverTorreHanoi(discos - 1, origem, auxiliar, destino);
+    printf("Mover disco %d de %c para %c\n", discos, origem, destino);
+    resolverTorreHanoi(discos - 1, auxiliar, destino, origem);
+}
+
+ 20.
+void gerarPermutacoes(char *texto, int esquerda, int direita) {
+    if (esquerda == direita) {
+        printf("%s\n", texto);
+        return;
+    }
+    for (int i = esquerda; i <= direita; i++) {
+        char temp = texto[esquerda]; texto[esquerda] = texto[i]; texto[i] = temp;
+        gerarPermutacoes(texto, esquerda + 1, direita);
+        temp = texto[esquerda]; texto[esquerda] = texto[i]; texto[i] = temp;
+    }
+}
+
+ 21. 
+void gerarCombinacoes(int vetor[], int combinacao[], int inicio, int fim, int indice, int tamanho) {
+    if (indice == tamanho) {
+        for (int i = 0; i < tamanho; i++) printf("%d ", combinacao[i]);
+        printf("\n");
+        return;
+    }
+    for (int i = inicio; i <= fim && fim - i + 1 >= tamanho - indice; i++) {
+        combinacao[indice] = vetor[i];
+        gerarCombinacoes(vetor, combinacao, i + 1, fim, indice + 1, tamanho);
+    }
+}
+
+ 22. 
+void gerarSubconjuntos(int vetor[], int tamanho, int indice, int subconjunto[], int tamanhoSub) {
+    if (indice == tamanho) {
+        printf("{ ");
+        for (int i = 0; i < tamanhoSub; i++) printf("%d ", subconjunto[i]);
+        printf("}\n");
+        return;
+    }
+    gerarSubconjuntos(vetor, tamanho, indice + 1, subconjunto, tamanhoSub);
+    subconjunto[tamanhoSub] = vetor[indice];
+    gerarSubconjuntos(vetor, tamanho, indice + 1, subconjunto, tamanhoSub + 1);
+}
+
+23. 
+void mesclar(int vetor[], int inicio, int meio, int fim) {
+    int i, j, k, tam1 = meio - inicio + 1, tam2 = fim - meio;
+    int esquerda[tam1], direita[tam2];
+    for (i = 0; i < tam1; i++) esquerda[i] = vetor[inicio + i];
+    for (j = 0; j < tam2; j++) direita[j] = vetor[meio + 1 + j];
+    i = j = 0, k = inicio;
+    while (i < tam1 && j < tam2) vetor[k++] = (esquerda[i] <= direita[j]) ? esquerda[i++] : direita[j++];
+    while (i < tam1) vetor[k++] = esquerda[i++];
+    while (j < tam2) vetor[k++] = direita[j++];
+}
+void ordenarMergeSort(int vetor[], int inicio, int fim) {
+    if (inicio < fim) {
+        int meio = inicio + (fim - inicio) / 2;
+        ordenarMergeSort(vetor, inicio, meio);
+        ordenarMergeSort(vetor, meio + 1, fim);
+        mesclar(vetor, inicio, meio, fim);
+    }
+}
+
+24. 
+int particionar(int vetor[], int baixo, int alto) {
+    int pivo = vetor[alto], i = baixo - 1;
+    for (int j = baixo; j < alto; j++)
+        if (vetor[j] < pivo) {
+            i++;
+            int temp = vetor[i]; vetor[i] = vetor[j]; vetor[j] = temp;
+        }
+    int temp = vetor[i + 1]; vetor[i + 1] = vetor[alto]; vetor[alto] = temp;
+    return i + 1;
+}
+void ordenarQuickSort(int vetor[], int baixo, int alto) {
+    if (baixo < alto) {
+        int pi = particionar(vetor, baixo, alto);
+        ordenarQuickSort(vetor, baixo, pi - 1);
+        ordenarQuickSort(vetor, pi + 1, alto);
+    }
+}
+
+25. 
+int buscaBinaria(int vetor[], int inicio, int fim, int alvo) {
+    if (inicio <= fim) {
+        int meio = inicio + (fim - inicio) / 2;
+        if (vetor[meio] == alvo) return meio;
+        if (vetor[meio] > alvo) return buscaBinaria(vetor, inicio, meio - 1, alvo);
+        return buscaBinaria(vetor, meio + 1, fim, alvo);
+    }
+    return -1;
+}
+
+26.
+long long calcularExponenciacaoRapida(int base, int expoente) {
+    if (expoente == 0) return 1;
+    long long temp = calcularExponenciacaoRapida(base, expoente / 2);
+    return (expoente % 2 == 0) ? temp * temp : base * temp * temp;
+}
+
+int main() {
+    // Testes para cada função podem ser adicionados aqui
+    int limite = 7;
+    imprimirNumerosImpares(limite, 1);
+    printf("\n");
+    
+    char texto[] = "abc";
+    gerarPermutacoes(texto, 0, strlen(texto) - 1);
+    
+    return 0;
+}
 
 ```
